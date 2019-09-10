@@ -5,11 +5,24 @@
     
 
 <script>
+function computerPLay(){
+    let cpChoice = Math.random() * 3
+    if (cpChoice<=1) {
+        let cpHand = "rock"}
+    else if (cpChoice<=2) {
+        let cpHand = "paper"}
+    else { 
+        let cpHand = "scissors"}
+    return cpHand
+}
+
+
+
     let playerSelection = prompt ("rock, paper, or scissors?");
     playerSelection=playerSelection.toLowerCase();
     console.log(playerSelection)
     
-
+    console.log(computerPLay())
 
 
 
