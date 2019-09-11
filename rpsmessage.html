@@ -1,0 +1,76 @@
+<html>
+<head>
+    </head>
+<body>
+    
+
+<script>
+function computerPLay(){
+    let cpChoice = Math.random() * 3
+    if (cpChoice<=1) {
+        return "rock"}
+    else if (cpChoice<=2) {
+        return "paper"}
+    else { 
+        return "scissors"}
+    }
+
+let computerSelection = computerPLay()    
+let playerSelection = prompt ("rock, paper, or scissors?");
+playerSelection=playerSelection.toLowerCase();
+
+
+function playRound (a, b){
+    if (a==b){
+        return "draw";}
+    else if (a=="rock" && b=="paper"){return "lose";}
+    else if (a=="rock" && b=="scissors"){return "win";}
+    else if (a=="paper" && b=="rock"){return "lose";}
+    else if (a=="paper" && b=="scissors"){return "win";}
+    else if (a=="scissors" && b=="rock"){return "lose";}
+    else if (a=="scissors" && b=="paper"){return "win";}
+    else {return "bug"}
+
+}
+function message (playerSelection,computerSelection){
+    if (playRound (playerSelection,computerSelection)=="win"){
+        return "You win! "+ playerSelection+ " beats "+ computerSelection;
+    }
+    else if (playRound (playerSelection,computerSelection)=="draw"){
+        return "It's a Draw! You both picked " + playerSelection;
+    }
+    else if (playRound (playerSelection,computerSelection)=="lose"){
+        return "You lose! "+ computerSelection+ " beats "+ playerSelection;
+    }
+    else {return "what?"}
+}
+
+
+
+
+
+console.log(playerSelection)
+console.log(computerSelection)
+
+console.log(message(playerSelection,computerSelection))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+
+</html>
