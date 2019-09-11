@@ -15,27 +15,53 @@ function computerPLay(){
         return "scissors"}
     }
 
-let computerSelection = computerPLay()    
-let playerSelection = prompt ("rock, paper, or scissors?");
-playerSelection=playerSelection.toLowerCase();
 
 
-function playRound (a, b){
+function playRound (a,b){
     if (a==b){
         return "draw";}
-    if (a=="rock" && b=="paper"){return "lose";}
-    if (a=="rock" && b=="scissors"){return "win";}
-    if (a=="paper" && b=="rock"){return "lose";}
-    if (a=="paper" && b=="scissors"){return "win";}
-    if (a=="scissors" && b=="rock"){return "lose";}
-    if (a=="scissors" && b=="paper"){return "win";}
+    else if (a=="rock" && b=="paper"){return "lose";}
+    else if (a=="rock" && b=="scissors"){return "win";}
+    else if (a=="paper" && b=="rock"){return "lose";}
+    else if (a=="paper" && b=="scissors"){return "win";}
+    else if (a=="scissors" && b=="rock"){return "lose";}
+    else if (a=="scissors" && b=="paper"){return "win";}
     else {return "bug"}
 
 }
 
-console.log(playerSelection)
-console.log(computerSelection)
-console.log(playRound(playerSelection,computerSelection))
+function game(){
+    while ((scoreCp+scorePl)<5) {
+        var playerSelection = prompt ("rock, paper, or scissors?");
+        var computerSelection = computerPLay();
+        playerSelection=playerSelection.toLowerCase();
+        if (playRound (playerSelection,computerSelection)=="win"){
+            scorePl=scorePl+1
+            console.log("one for you!" + scorePl + "-" + scoreCp);
+            }
+        else if (playRound (playerSelection,computerSelection)=="lose"){
+            scoreCp=scoreCp+1
+            console.log("one for the machine! " + scorePl + "-" + scoreCp);
+            }
+        else if (playRound (playerSelection,computerSelection)=="draw"){
+            console.log("it's a draw " + scorePl + "-" + scoreCp);
+            }
+        else if (playRound (playerSelection,computerSelection)=="bug"){
+            console.log("What? " + scorePl + "-" + scoreCp);
+            }
+        console.log("the computer chose " + computerSelection)
+        console.log("you chose " +playerSelection)
+        }
+    console.log("final score: " +scorePl + " - " + scoreCp)
+    }
+        
+
+
+
+var scorePl = 0;
+var scoreCp = 0;
+game()
+
 
 
 
