@@ -8,21 +8,34 @@
 function computerPLay(){
     let cpChoice = Math.random() * 3
     if (cpChoice<=1) {
-        let cpHand = "rock"}
+        return "rock"}
     else if (cpChoice<=2) {
-        let cpHand = "paper"}
+        return "paper"}
     else { 
-        let cpHand = "scissors"}
-    return cpHand
+        return "scissors"}
+    }
+
+let computerSelection = computerPLay()    
+let playerSelection = prompt ("rock, paper, or scissors?");
+playerSelection=playerSelection.toLowerCase();
+
+
+function playRound (a, b){
+    if (a==b){
+        return "draw";}
+    if (a=="rock" && b=="paper"){return "lose";}
+    if (a=="rock" && b=="scissors"){return "win";}
+    if (a=="paper" && b=="rock"){return "lose";}
+    if (a=="paper" && b=="scissors"){return "win";}
+    if (a=="scissors" && b=="rock"){return "lose";}
+    if (a=="scissors" && b=="paper"){return "win";}
+    else {return "bug"}
+
 }
 
-
-
-    let playerSelection = prompt ("rock, paper, or scissors?");
-    playerSelection=playerSelection.toLowerCase();
-    console.log(playerSelection)
-    
-    console.log(computerPLay())
+console.log(playerSelection)
+console.log(computerSelection)
+console.log(playRound(playerSelection,computerSelection))
 
 
 
