@@ -50,17 +50,20 @@
     var plPoints = 0;
     plScore.textContent = plPoints;
     cpScore.textContent = cpPoints;
+    const insult = ["courge", "chapiteau", "moule", "grosse merde", "slip", "porte-manteau", "sac à merde", "flan", "potée auvergnate", "cuistre"];
     
     
     function winCheck (){
         if (cpPoints >=3) {
-            alert (`T'as perdu 3 à ${plPoints} , grosse merde!`);
+            alert (`T'as perdu 3 à ${plPoints} , espèce de 
+${insult[(Math.floor(Math.random() * 10))]}`);
             cpPoints =0
             plPoints=0
         }
         if (plPoints >=3) {
             alert (`T'as gagné 3 à ${cpPoints}...`);
-            alert ("mais t'es quand même une grosse merde.");
+            alert (`mais t'es quand même une sorte de
+${insult[(Math.floor(Math.random() * 10))]}`);
             cpPoints =0
             plPoints=0
         }
