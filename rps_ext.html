@@ -11,9 +11,20 @@
     
 
     </div>
-    <div id="result">
-            <div id="cpChoice"> COMPUTER CHOICE:</div><br>
-        <b>RESULT</b><br>
+    
+        <div id="cpChoice"> 
+            COMPUTER CHOICE:
+
+        </div>
+        <div id="result">
+            <b>RESULT</b>
+        </div>
+        <div id="scores"> SCORE
+
+            
+        </div>
+                
+    </div>
 
     </div>
 
@@ -30,6 +41,32 @@
     const cpCh = document.createElement("div");
     resultContainer.appendChild(result);
     cpChContainer.appendChild(cpCh);
+    const scores = document.querySelector("#scores");
+    const cpScore = document.createElement ("div", id="#cpScore");
+    const plScore = document.createElement ("div", id="#plScore");
+    scores.appendChild(plScore);
+    scores.appendChild(cpScore);
+    var cpPoints = 0;
+    var plPoints = 0;
+    plScore.textContent = plPoints;
+    cpScore.textContent = cpPoints;
+    
+    
+    function winCheck (){
+        if (cpPoints >=3) {
+            alert (`T'as perdu 3 à ${plPoints} , grosse merde!`);
+            cpPoints =0
+            plPoints=0
+        }
+        if (plPoints >=3) {
+            alert (`T'as gagné 3 à ${cpPoints}...`);
+            alert ("mais t'es quand même une grosse merde.");
+            cpPoints =0
+            plPoints=0
+        }
+
+    }
+
 
     
 
@@ -59,56 +96,39 @@
         else {return "bug"}
         }
 
-    function game(){
-        while ((scoreCp+scorePl)<5) {
-            var playerSelection = prompt ("rock, paper, or scissors?");
-            var computerSelection = computerPLay();
-            playerSelection=playerSelection.toLowerCase();
-            if (playRound (playerSelection,computerSelection)=="win"){
-                scorePl=scorePl+1
-                console.log("one for you!" + scorePl + "-" + scoreCp);
-                }
-            else if (playRound (playerSelection,computerSelection)=="lose"){
-                scoreCp=scoreCp+1
-                console.log("one for the machine! " + scorePl + "-" + scoreCp);
-                }
-            else if (playRound (playerSelection,computerSelection)=="draw"){
-                console.log("it's a draw " + scorePl + "-" + scoreCp);
-                }
-            else if (playRound (playerSelection,computerSelection)=="bug"){
-                console.log("What? " + scorePl + "-" + scoreCp);
-                }
-            console.log("the computer chose " + computerSelection)
-            console.log("you chose " +playerSelection)
-            }
-        console.log("final score: " +scorePl + " - " + scoreCp)
-        }
+    function fullRound (a){
+        var cpSelection = (computerPLay())
+        var playerSelection = a
+        cpCh.textContent = cpSelection;
+        roundResult= (playRound(playerSelection,cpSelection))
+        result.textContent = roundResult
+        if (roundResult=="win") {++plPoints}
+        if (roundResult=="lose") {++cpPoints}
+        plScore.textContent = plPoints
+        cpScore.textContent = cpPoints
+
+
+    }
     
     const btnRock = document.querySelector("#rock");
     const btnPaper = document.querySelector("#paper");
     const btnSci = document.querySelector("#scissors");
 
     btnRock.addEventListener('click',function(){
-        var playerSelection = "rock";
-        var cpSelection = (computerPLay())
-        cpCh.textContent = cpSelection;
-        result.textContent = (playRound(playerSelection,cpSelection))
+        fullRound("rock")
+        winCheck()
         
         })
 
     
     btnPaper.addEventListener('click',function(){
-        var playerSelection = "paper";
-        var cpSelection = (computerPLay())
-        cpCh.textContent = cpSelection;
-        result.textContent = (playRound(playerSelection,cpSelection))
+        fullRound("paper")
+        winCheck()
         })
 
     btnSci.addEventListener('click',function(){
-        var playerSelection = "scissors";
-        var cpSelection = (computerPLay())
-        cpCh.textContent = cpSelection;
-        result.textContent = (playRound(playerSelection,cpSelection))
+        fullRound("scissors")
+        winCheck()
         })
     
     
