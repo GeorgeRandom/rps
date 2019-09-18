@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head><title>ROCK PAPER SCISSORS!</title>
+<link rel="stylesheet" href="base.css">
+</head>
+    
+<body>
+    <h1>Let's play!</h1>
+    <div class="container">
+
+        <div class="playerchoice">
+                HUMAN<br>
+
+                <img class= "plimg" height="200"  src="./images/quest.png"><br>
+            <div class = "buttons">
+                <button  class="rock">ROCK</button>
+                <button  class="paper">PAPER</button>
+                <button  class="scissors">SCISSORS</button>
+            </div>
+            
+            </div>
+        <div class="cpChoice"> 
+                    MACHINE<BR>
+                    <img class= "cpimg"  height="200"  src="./images/quest.png"><br>
+
+                    
+                    
+            </div>
+        <div class="result">
+                    <b>RESULT</b>
+            </div>
+        <div class="scores"> SCORE
+            </div>
+        
+
+        
+    
+            
+
+                
+            
+    </div>
+    <div class= "final"></div>
+                    
+   
+
+    
+
+    <script>
+        
+
+    var scorePl = 0;
+    var scoreCp = 0;
+    const resultContainer = document.querySelector('.result');
+    const cpChContainer = document.querySelector('.cpChoice');
+    const result = document.createElement("div");
+    const cpCh = document.querySelector(".cpimg")
+    const plCh = document.querySelector(".plimg")
+    const finalscore = document.querySelector(".final")
+    resultContainer.appendChild(result);
+    
+    const scores = document.querySelector(".scores");
+    const cpScore = document.createElement ("div", id=".cpScore");
+    const plScore = document.createElement ("div", id=".plScore");
+    scores.appendChild(plScore);
+    scores.appendChild(cpScore);
+    var cpPoints = 0;
+    var plPoints = 0;
+    plScore.textContent = plPoints;
+    cpScore.textContent = cpPoints;
+    /* const insult = ["courge", "chapiteau", "moule", "grosse merde", "slip", "porte-manteau", "sac à merde", "flan", "potée auvergnate", "cuistre"]; */
+    
+    
+    function winCheck (){
+        if (cpPoints >=3) {
+            finalscore.textContent = `you lost 3 to ${plPoints}`
+            /* alert (`T'as perdu 3 à ${plPoints} , espèce de 
+                ${insult[(Math.floor(Math.random() * 10))]}`); */
+            cpPoints =0
+            plPoints=0
+        }
+        if (plPoints >=3) {
+            finalscore.textContent = `you won 3 to ${cpPoints}`
+            /* alert (`T'as gagné 3 à ${cpPoints}...`);
+            alert (`mais t'es quand même une sorte de
+                ${insult[(Math.floor(Math.random() * 10))]}`); */
+            cpPoints =0
+            plPoints=0
+        }
+
+    }
+
+
+    
+
+
+
+    function computerPLay(){
+        let cpChoice = Math.random() * 3
+        if (cpChoice<=1) {
+            cpCh.src= "./images/rock.jpg";
+            return "rock"}
+        else if (cpChoice<=2) {
+            cpCh.src= "./images/paper.jpg";
+            return "paper"}
+        else { 
+            cpCh.src= "./images/scissors.jpg";
+            return "scissors"}
+        }
+
+
+
+    function playRound (a,b){
+        if (a==b){
+            return "draw";}
+        else if (a=="rock" && b=="paper"){return "lose";}
+        else if (a=="rock" && b=="scissors"){return "win";}
+        else if (a=="paper" && b=="rock"){return "win";}
+        else if (a=="paper" && b=="scissors"){return "lose";}
+        else if (a=="scissors" && b=="rock"){return "lose";}
+        else if (a=="scissors" && b=="paper"){return "win";}
+        else {return "bug"}
+        }
+
+    function fullRound (a){
+        var cpSelection = (computerPLay())
+        var playerSelection = a
+        cpCh.textContent = cpSelection;
+        roundResult= (playRound(playerSelection,cpSelection))
+        result.textContent = `you ${roundResult}`
+        if (roundResult=="win") {++plPoints}
+        if (roundResult=="lose") {++cpPoints}
+        plScore.textContent = plPoints
+        cpScore.textContent = cpPoints
+
+
+    }
+    
+    const btnRock = document.querySelector(".rock");
+    const btnPaper = document.querySelector(".paper");
+    const btnSci = document.querySelector(".scissors");
+
+    btnRock.addEventListener('click',function(){
+        plCh.src= "./images/rock.jpg";
+
+        fullRound("rock")
+        winCheck()
+        
+        })
+
+    
+    btnPaper.addEventListener('click',function(){
+        plCh.src= "./images/paper.jpg"
+        fullRound("paper")
+        winCheck()
+        })
+
+    btnSci.addEventListener('click',function(){
+        plCh.src= "./images/scissors.jpg"
+        fullRound("scissors")
+        winCheck()
+        })
+    
+    
+
+    
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+
+</html>
